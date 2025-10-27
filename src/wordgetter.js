@@ -24,13 +24,9 @@ console.log(words_present);
 
 export function getRandomWord() {
     var person = getRandomInt(6);
-
     var tense = tenseById[getRandomInt(tenseById.length)];
     var book = tenses[tense];
     var row = book[getRandomInt(book.length)];
-
-    console.log(row);
-    console.log(personById[person]);
     var solution = row[personById[person]];
     var pronoun = pronomina[person];
 

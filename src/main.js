@@ -56,11 +56,8 @@ var confirming = false;
 async function waitForConfirm() {
   confirmEl.removeAttribute("hidden");
   inputEl.disabled = true;
-
-  console.log("waiting ...");
   await waitingKeypress();
 
-  console.log("done");
 
   hideIncorrectBox()
   inputEl.disabled = false;
@@ -73,11 +70,22 @@ function waitingKeypress() {
     function onKeyHandler(e) {
       if (e.keyCode === 32) {
         document.removeEventListener("keydown", onKeyHandler);
-        console.log("continuing");
         resolve();
       }
     }
   });
+}
+
+function checkAnswer(answer) {
+
+  var sol = currentWord.solution;
+  sol = sol.replaceAll("ó", "oo");
+  sol = sol.replaceAll("á", "aa");
+  sol = sol.replaceAll("í", "ii");
+  sol = sol.replaceAll("é", "ee");
+  sol = sol.replaceAll("ú", "uu");
+
+  return answer === currentWord.solution || answer === sol;
 }
 
 inputEl.addEventListener("keydown", async e => {
@@ -87,7 +95,7 @@ inputEl.addEventListener("keydown", async e => {
     const answer = inputEl.value.trim().toLowerCase();
     
     console.log("Antwort:", answer);
-    if(answer === currentWord.solution) {
+    if(checkAnswer(answer)) {
       console.log("correct");
 
       currentStreak++;
