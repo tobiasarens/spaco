@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+    --color-back: oklch(14.7% 0.004 49.25);
+    --color-panel: oklch(26.8% 0.007 34.298);
+    --color-accent: oklch(70.4% 0.04 256.788);
+
+    --color-border-panel: oklch(55.1% 0.027 264.364);
+    --color-entry-box: oklch(92% 0.004 286.32);
+    --color-txtpanel: oklch(92.9% 0.013 255.508);
+
+    --color-tense-card: oklch(21.6% 0.006 56.043);
+    --color-tense-font: oklch(86.9% 0.005 56.366);
+
+}
