@@ -7,10 +7,10 @@
         <link href="/src/tailwind.css" rel="stylesheet">
   </head>
   <body>
-
+    <div id="confirm_el"></div>
     <div class="bg-back flex h-screen text-txtpanel">
         <div class="flex flex-col gap-5 m-auto max-w-xl bg-panel min-w-xl min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]">
-            <div class="mx-auto">Spanish Conjugation Practice</div>
+            <div class="mx-auto text-4xl pb-3">Spanish Conjugation Practice</div>
             <div id="streaks_container" class="flex flex-row items-stretch">
                 <div class="flex flex-col">
                     <div>
@@ -36,7 +36,14 @@
                     </div>
                 </div>
             </div>
-            <div></div>
+            <div id="incorrect_box" class="mx-auto min-w-50 border-3 border-black">
+                <div id="solution_incorrect" class="bg-incorrect text-incorrect-txt flex flex-col">
+                    <div class="mx-auto font-bold">Incorrect</div>
+                    <div id="incorrect_answer" class="mx-auto line-through">Your solution</div>
+                    <div id="incorrect_solution" class="mx-auto">correct solution</div>
+                </div>
+            </div>
+            <div id="continue_text" class="mx-auto">Press Space to continue</div>
             <div class="mx-auto rounded-2xl flex flex-row">
                 <div id="pronoun" class="my-auto text-xl pr-3">yo</div>
                 <input id="main-text-input" type="text" maxlength="50" aria-label="Answer" class=" bg-entry-box  text-black w-70 min-h-10 rounded-2xl px-3 border-3 border-border-panel">

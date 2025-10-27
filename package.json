@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@rollup/plugin-dsv": "^3.0.5",
     "vite": "^7.1.7"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
+    "papaparse": "^5.5.3",
     "tailwindcss": "^4.1.16"
   }
 }
