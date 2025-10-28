@@ -9,7 +9,8 @@ Have a simple web-frontend that shows a verb, a tense and asks for the correct f
 
 The options panel features some control about the randomizer like only allowing specific tenses or pronouns for more specialized training.
 
-Heavily inspired by this [Japanese conjugation practice tool](https://github.com/baileysnyder/japanese-conjugation) made by Bailey Synder.
+Heavily inspired by this [Japanese conjugation practice tool](https://github.com/baileysnyder/japanese-conjugation) made by Bailey Synder.  
+Also credits to Fred Jehle who created an open [conjugation database](https://github.com/ghidinelli/fred-jehle-spanish-verbs) with over 600 verbs.
 
 # Installation
 
