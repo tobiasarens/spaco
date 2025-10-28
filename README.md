@@ -12,6 +12,12 @@ The options panel features some control about the randomizer like only allowing 
 Heavily inspired by this [Japanese conjugation practice tool](https://github.com/baileysnyder/japanese-conjugation) made by Bailey Synder.  
 Also credits to Fred Jehle who created an open [conjugation database](https://github.com/ghidinelli/fred-jehle-spanish-verbs) with over 600 verbs.
 
+## Limitations and Future Plans
+
+1) Add more tenses and verbs
+2) Add some more options
+3) Host it somewhere
+
 # Installation
 
 ```
