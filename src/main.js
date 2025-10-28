@@ -6,9 +6,12 @@ const tenseEl = document.getElementById("tense");
 const pronounEl = document.getElementById("pronoun");
 const inputEl = document.getElementById("main-text-input");
 
-const incorrectEl = document.getElementById("incorrect_box");
+const correctnessBoxEl = document.getElementById("incorrect_box");
 const incorrectAnswerEl = document.getElementById("incorrect_answer");
 const incorrectSolutionEl = document.getElementById("incorrect_solution");
+const sol_correctEl = document.getElementById("solution_correct");
+const correctAnswerEl = document.getElementById("correct_answer");
+const sol_incorrectEl = document.getElementById("solution_incorrect");
 const confirmEl = document.getElementById("continue_text");
 
 const currentStreakEl = document.getElementById("val_current_streak");
@@ -18,18 +21,24 @@ var currentWord;
 var currentStreak = 0; 
 var maxStreak = 0;
 
-function showIncorrectBox(answer, solution) {
-  incorrectAnswerEl.textContent = answer;
-  incorrectSolutionEl.textContent = solution;
+function showCorrectBox(isCorrect, answer, solution) {
+  var toShowEl = isCorrect ? sol_correctEl : sol_incorrectEl;
+  var solutionEl = isCorrect ? correctAnswerEl : incorrectSolutionEl;
 
-  incorrectEl.removeAttribute("hidden");
+  toShowEl.removeAttribute("hidden");
+
+  incorrectAnswerEl.textContent = answer;
+  solutionEl.textContent = solution;
+
+  correctnessBoxEl.removeAttribute("hidden");
 }
 
 function hideIncorrectBox() {
-  incorrectEl.setAttribute("hidden", "true");
+  correctnessBoxEl.setAttribute("hidden", "true");
+  sol_correctEl.setAttribute("hidden", "true");
+  sol_incorrectEl.setAttribute("hidden", "true");
   confirmEl.setAttribute("hidden", "true");
 }
-
 
 function nextQuestion() {
 
@@ -102,17 +111,48 @@ inputEl.addEventListener("keydown", async e => {
       if(currentStreak > maxStreak) {
         maxStreak = currentStreak;
       }
+
+      showCorrectBox(true, answer, currentWord.solution);
+
       await waitForConfirm();
     } else {
       console.log("incorrect");
 
       currentStreak = 0;
-      showIncorrectBox(answer, currentWord.solution);
+      showCorrectBox(false, answer, currentWord.solution);
       await waitForConfirm();
     }
   }
 });
 
+const mainViewEl = document.getElementById("main_content_view");
+const optionsViewEl = document.getElementById("options_content_view");
 
+const btnOptions = document.getElementById("btnOption");
+const btnCancel = document.getElementById("btnCancel");
+
+function showOptions() {
+  mainViewEl.setAttribute("hidden", "true");
+  optionsViewEl.removeAttribute("hidden");
+}
+
+function saveOptions() {
+
+}
+
+function hideOptions() {
+  optionsViewEl.setAttribute("hidden", "true");
+  mainViewEl.removeAttribute("hidden");
+}
+
+function saveAndHideOptions() {
+  saveOptions();
+  hideOptions();
+}
+
+btnOptions.addEventListener("click", () => showOptions());
+btnCancel.addEventListener("click", () => hideOptions());
+
+hideOptions();
 hideIncorrectBox();
 nextQuestion();

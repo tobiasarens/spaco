@@ -12,7 +12,8 @@
     --color-tense-card: oklch(21.6% 0.006 56.043);
     --color-tense-font: oklch(86.9% 0.005 56.366);
 
-
+    --color-correct: oklch(89.7% 0.196 126.665);
+    --color-correct-txt: oklch(21% 0.034 264.665);
     --color-incorrect: oklch(80.8% 0.114 19.571);
     --color-incorrect-txt: oklch(14.1% 0.005 285.823);
 }
