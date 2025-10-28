@@ -1,4 +1,4 @@
-import { getRandomWord } from "./wordgetter";
+import { getRandomWord, getRandomWordConstraint } from "./wordgetter";
 
 const infinitiveEl = document.getElementById("verb_spanish");
 const englishEL = document.getElementById("verb_english");
@@ -20,6 +20,18 @@ const maxStreakEl = document.getElementById("val_max_streak");
 var currentWord;
 var currentStreak = 0; 
 var maxStreak = 0;
+
+var options = {
+  presente: true,
+  indefinido: true,
+  imperfecto: true,
+  sg1: true,
+  sg2: true,
+  sg3: true,
+  pl1: true,
+  pl2: true,
+  pl3: true,
+};
 
 function showCorrectBox(isCorrect, answer, solution) {
   var toShowEl = isCorrect ? sol_correctEl : sol_incorrectEl;
@@ -45,7 +57,7 @@ function nextQuestion() {
   maxStreakEl.textContent = maxStreak;
   currentStreakEl.textContent = currentStreak;
 
-  var nextWord = getRandomWord();
+  var nextWord = getRandomWordConstraint(getAllowedTenses(options), getAllowedPersons(options));
   currentWord = nextWord;
   console.log(nextWord);
 
@@ -132,6 +144,7 @@ const optionsViewEl = document.getElementById("options_content_view");
 
 const btnOptions = document.getElementById("btnOption");
 const btnCancel = document.getElementById("btnCancel");
+const btnSave = document.getElementById("btnSave");
 
 function showOptions() {
   mainViewEl.setAttribute("hidden", "true");
@@ -139,7 +152,17 @@ function showOptions() {
 }
 
 function saveOptions() {
+  options.presente = document.getElementById("ckPresente").checked;
+  options.indefinido = document.getElementById("ckIndefinido").checked;
+  options.imperfecto = document.getElementById("ckImperfecto").checked;
+  options.sg1 = document.getElementById("ckSg1").checked;
+  options.sg2 = document.getElementById("ckSg2").checked;
+  options.sg3 = document.getElementById("ckSg3").checked;
+  options.pl1 = document.getElementById("ckPl1").checked;
+  options.pl2 = document.getElementById("ckPl2").checked;
+  options.pl3 = document.getElementById("ckPl3").checked;
 
+  console.log("new options: ", options);
 }
 
 function hideOptions() {
@@ -150,10 +173,34 @@ function hideOptions() {
 function saveAndHideOptions() {
   saveOptions();
   hideOptions();
+  nextQuestion();
 }
 
 btnOptions.addEventListener("click", () => showOptions());
 btnCancel.addEventListener("click", () => hideOptions());
+btnSave.addEventListener("click", () => saveAndHideOptions());
+
+
+function getAllowedPersons(options) {
+  var allowed = [];
+  if (options.sg1) allowed.push("sg1");
+  if (options.sg2) allowed.push("sg2");
+  if (options.sg3) allowed.push("sg3");
+  if (options.pl1) allowed.push("pl1");
+  if (options.pl2) allowed.push("pl2");
+  if (options.pl3) allowed.push("pl3");
+
+  return allowed.length > 0 ? allowed : ["sg1"];
+}
+
+function getAllowedTenses(options) {
+  var allowed = [];
+  if (options.presente)   allowed.push("presente");
+  if (options.indefinido) allowed.push("indefinido");
+  if (options.imperfecto) allowed.push("imperfecto");
+
+  return allowed.length > 0 ? allowed : ["presente"];
+}
 
 hideOptions();
 hideIncorrectBox();

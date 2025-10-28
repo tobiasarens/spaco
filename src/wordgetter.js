@@ -9,12 +9,20 @@ function getRandomInt(max) {
 }
 
 const pronomina = ["yo", "tu", "el", "nosotros", "vosotros", "ellos"];
+const pronomina_dict = {
+    sg1: "yo",
+    sg2: "tu", 
+    sg3: "el", 
+    pl1: "nosotros",
+    pl2: "vosotros",
+    pl3: "ellos"
+}
 const pron_sg_third = ["el, la"];
 const pron_pl_third = ["ellos", "ellas"];
 
-const tenseById = ["present", "indefinido", "imperfecto"];
+const tenseById = ["presente", "indefinido", "imperfecto"];
 const tenses = {
-    "present":words_present, 
+    "presente":words_present, 
     "indefinido": words_indefinido, 
     "imperfecto": words_imperfecto
 };
@@ -36,5 +44,22 @@ export function getRandomWord() {
         "tense": tense,
         "person": pronoun,
         "solution": solution
+    };
+}
+
+export function getRandomWordConstraint(allowedTenses, allowedPersons) {
+    var person = allowedPersons[getRandomInt(allowedPersons.length)];
+    var tense = allowedTenses[getRandomInt(allowedTenses.length)];
+    var book = tenses[tense];
+    var row = book[getRandomInt(book.length)];
+    var solution = row[person];
+    var pronoun = pronomina_dict[person];
+
+    return {
+      infinite: row["infinitive"],
+      //"english": row["english"],
+      tense: tense,
+      person: pronoun,
+      solution: solution,
     };
 }

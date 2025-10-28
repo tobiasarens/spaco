@@ -3,113 +3,152 @@
   <head>
     <meta charset="UTF-8" />
     <title>Spanish Conjugator</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-        <link href="/src/tailwind.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+    />
+    <link href="/src/tailwind.css" rel="stylesheet" />
   </head>
   <body>
     <div class="bg-back flex h-screen text-txtpanel">
-        <div id="main_content_view" class="flex flex-col gap-5 m-auto max-w-xl bg-panel min-w-xl min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]">
-            <div class="mx-auto text-4xl pb-3">Spanish Conjugation Practice</div>
-            <div id="streaks_container" class="flex flex-row items-stretch">
-                <div class="flex flex-col">
-                    <div>
-                        Current Streak:
-                    </div>
-                    <div id="val_current_streak" class="mx-auto">100</div>
-                </div>
-                <div class="flex-1"></div>
-                <div class="flex flex-col">
-                    <div>Max Streak: </div>
-                    <div id="val_max_streak" class="mx-auto">100</div>
-                </div>
-
-            </div>
-            <div class="mx-auto flex flex-col gap-2 bg-main">
-                <div id="verb_spanish" class="text-4xl mx-auto">tener</div>
-                <div id="verb_english" class="mx-auto">have</div>
-                <div class="flex flex-row mx-auto">
-                    <div id="tense_card" class="flex flex-col">
-                        <div id="tense" class="bg-tense-card text-tense-font p-1 rounded-lg">
-                            present
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="min-h-23">
-              <div id="incorrect_box" class="m-auto min-w-20 border-3 border-black max-w-60 max-h-20">
-                <div id="solution_correct" class="bg-correct text-correct-txt flex flex-col">
-                  <div class="mx-auto font-bold">Correct!</div>
-                  <div id="correct_answer" class="mx-auto">Your solution</div>
-                </div>
-                <div id="solution_incorrect" class="bg-incorrect text-incorrect-txt flex flex-col">
-                  <div class="mx-auto font-bold">Incorrect</div>
-                  <div id="incorrect_answer" class="mx-auto line-through">Your solution</div>
-                  <div id="incorrect_solution" class="mx-auto">correct solution</div>
-                </div>
-              </div>
-            </div>
-            <div class="mx-auto min-h-5">  
-              <div id="continue_text" class="mx-auto">Press Space to continue</div>
-            </div>
-            <div class="mx-auto rounded-2xl flex flex-row">
-                <div id="pronoun" class="my-auto text-xl pr-3">yo</div>
-                <input id="main-text-input" type="text" maxlength="50" aria-label="Answer" class=" bg-entry-box  text-black w-70 min-h-10 rounded-2xl px-3 border-3 border-border-panel">
-            </div>
-            <div class="flex flex-row">
-                <div class="text-border-panel">Made by Tobias Arens</div>
-                <div class="flex-1"></div>
-                <div>
-                  <button id="btnOption">Options ⚙️</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="options_content_view" class="flex flex-col m-auto max-w-xl bg-panel min-w-md min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]">
-          <div class="mx-auto text-3xl pb-5">Options</div>
-          <div class="mx-auto">
-            <div class="text-lg mx-10">Tenses</div>
-            <hr class="pb-1">
-            <div>
-              <input id="ckPresent" type="checkbox" checked/>
-              <label for="ckPresent">ask presente</label>
-            </div>
-            <div>
-              <input id="ckIndefinido" type="checkbox" checked/>
-              <label for="ckIndefinido">ask preterito / indefinido</label>
-            </div>
-            <div>
-              <input id="ckImperfecto" type="checkbox" checked/>
-              <label for="ckImperfecto">ask imperfecto</label>
-            </div>
-          </div>
-          <div class="mx-auto">
-            <div class="text-lg mx-10">Personas</div>
-            <hr class="pb-1">
-            <div>
-              <input id="ckSg1" type="checkbox" checked/>
-              <label for="ckPresent">ask yu</label>
-            </div>
-            <div>
-              <input id="ckSg2" type="checkbox" checked/>
-              <label for="ckIndefinido">ask tu</label>
-            </div>
-            <div>
-              <input id="ckImperfecto" type="checkbox" checked/>
-              <label for="ckSg3">ask el/la</label>
-            </div>
+      <div
+        id="main_content_view"
+        class="flex flex-col gap-5 m-auto max-w-xl bg-panel min-w-xl min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]"
+      >
+        <div class="mx-auto text-4xl pb-3">Spanish Conjugation Practice</div>
+        <div id="streaks_container" class="flex flex-row items-stretch">
+          <div class="flex flex-col">
+            <div>Current Streak:</div>
+            <div id="val_current_streak" class="mx-auto">100</div>
           </div>
           <div class="flex-1"></div>
-
-          <div class="flex flex-row">
-            <div><button id="btnCancel">Cancel</button></div>
-            <div class="flex-1"></div>
-            <div>Save</div>
+          <div class="flex flex-col">
+            <div>Max Streak:</div>
+            <div id="val_max_streak" class="mx-auto">100</div>
           </div>
-
         </div>
+        <div class="mx-auto flex flex-col gap-2 bg-main">
+          <div id="verb_spanish" class="text-4xl mx-auto">tener</div>
+          <div id="verb_english" class="mx-auto">have</div>
+          <div class="flex flex-row mx-auto">
+            <div id="tense_card" class="flex flex-col">
+              <div
+                id="tense"
+                class="bg-tense-card text-tense-font p-1 rounded-lg"
+              >
+                present
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="min-h-23">
+          <div
+            id="incorrect_box"
+            class="m-auto min-w-20 border-3 border-black max-w-60 max-h-20"
+          >
+            <div
+              id="solution_correct"
+              class="bg-correct text-correct-txt flex flex-col"
+            >
+              <div class="mx-auto font-bold">Correct!</div>
+              <div id="correct_answer" class="mx-auto">Your solution</div>
+            </div>
+            <div
+              id="solution_incorrect"
+              class="bg-incorrect text-incorrect-txt flex flex-col"
+            >
+              <div class="mx-auto font-bold">Incorrect</div>
+              <div id="incorrect_answer" class="mx-auto line-through">
+                Your solution
+              </div>
+              <div id="incorrect_solution" class="mx-auto">
+                correct solution
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto min-h-5">
+          <div id="continue_text" class="mx-auto">Press Space to continue</div>
+        </div>
+        <div class="mx-auto rounded-2xl flex flex-row">
+          <div id="pronoun" class="my-auto text-xl pr-3">yo</div>
+          <input
+            id="main-text-input"
+            type="text"
+            maxlength="50"
+            aria-label="Answer"
+            class="bg-entry-box text-black w-70 min-h-10 rounded-2xl px-3 border-3 border-border-panel"
+          />
+        </div>
+        <div class="flex flex-row">
+          <div class="text-border-panel">Made by Tobias Arens</div>
+          <div class="flex-1"></div>
+          <div>
+            <button id="btnOption">Options ⚙️</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="options_content_view"
+        class="flex flex-col m-auto max-w-xl bg-panel min-w-md min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]"
+      >
+        <div class="mx-auto text-3xl pb-5">Options</div>
+        <div class="mx-auto">
+          <div class="text-lg mx-10">Tenses</div>
+          <hr class="pb-1" />
+          <div>
+            <input id="ckPresente" type="checkbox" checked />
+            <label for="ckPresente">ask presente</label>
+          </div>
+          <div>
+            <input id="ckIndefinido" type="checkbox" checked />
+            <label for="ckIndefinido">ask preterito / indefinido</label>
+          </div>
+          <div>
+            <input id="ckImperfecto" type="checkbox" checked />
+            <label for="ckImperfecto">ask imperfecto</label>
+          </div>
+        </div>
+        <div class="mx-auto pt-6">
+          <div class="text-lg mx-10">Personas</div>
+          <hr class="pb-1" />
+          <div>
+            <input id="ckSg1" type="checkbox" checked />
+            <label for="ckPresent">ask yu</label>
+          </div>
+          <div>
+            <input id="ckSg2" type="checkbox" checked />
+            <label for="ckIndefinido">ask tu</label>
+          </div>
+          <div>
+            <input id="ckSg3" type="checkbox" checked />
+            <label for="ckSg3">ask el/la</label>
+          </div>
+          <div>
+            <input id="ckPl1" type="checkbox" checked />
+            <label for="ckPl1">ask nosotros</label>
+          </div>
+          <div>
+            <input id="ckPl2" type="checkbox" checked />
+            <label for="ckPl2">ask vosotros</label>
+          </div>
+          <div>
+            <input id="ckPl3" type="checkbox" checked />
+            <label for="ckPl3">ask ellos/ellas</label>
+          </div>
+        </div>
+        <div class="flex-1"></div>
+
+        <div class="flex flex-row">
+          <div><button id="btnCancel">Cancel</button></div>
+          <div class="flex-1"></div>
+          <div><button id="btnSave">Save</button></div>
+        </div>
+      </div>
 
       <!-- End of Background div -->
-    </div> 
+    </div>
 
     <script type="module" src="src/main.js"></script>
   </body>
