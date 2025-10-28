@@ -98,10 +98,12 @@ function checkAnswer(answer) {
 }
 
 inputEl.addEventListener("keydown", async e => {
-  if (e.key === "Enter") {
+  
+  const answer = inputEl.value.trim().toLowerCase();
+
+  if (answer !== "" && e.key === "Enter") {
     e.preventDefault();
     hideIncorrectBox();
-    const answer = inputEl.value.trim().toLowerCase();
     
     console.log("Antwort:", answer);
     if(checkAnswer(answer)) {
@@ -156,3 +158,6 @@ btnCancel.addEventListener("click", () => hideOptions());
 hideOptions();
 hideIncorrectBox();
 nextQuestion();
+
+// debug tmp
+showOptions();

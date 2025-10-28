@@ -64,10 +64,41 @@
             </div>
         </div>
 
-        <div id="options_content_view" class="flex flex-col m-auto max-w-xl bg-panel min-w-xl min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]">
-          <div>Options</div>
-
-          <div>Options 2</div>
+        <div id="options_content_view" class="flex flex-col m-auto max-w-xl bg-panel min-w-md min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]">
+          <div class="mx-auto text-3xl pb-5">Options</div>
+          <div class="mx-auto">
+            <div class="text-lg mx-10">Tenses</div>
+            <hr class="pb-1">
+            <div>
+              <input id="ckPresent" type="checkbox" checked/>
+              <label for="ckPresent">ask presente</label>
+            </div>
+            <div>
+              <input id="ckIndefinido" type="checkbox" checked/>
+              <label for="ckIndefinido">ask preterito / indefinido</label>
+            </div>
+            <div>
+              <input id="ckImperfecto" type="checkbox" checked/>
+              <label for="ckImperfecto">ask imperfecto</label>
+            </div>
+          </div>
+          <div class="mx-auto">
+            <div class="text-lg mx-10">Personas</div>
+            <hr class="pb-1">
+            <div>
+              <input id="ckSg1" type="checkbox" checked/>
+              <label for="ckPresent">ask yu</label>
+            </div>
+            <div>
+              <input id="ckSg2" type="checkbox" checked/>
+              <label for="ckIndefinido">ask tu</label>
+            </div>
+            <div>
+              <input id="ckImperfecto" type="checkbox" checked/>
+              <label for="ckSg3">ask el/la</label>
+            </div>
+          </div>
+          <div class="flex-1"></div>
 
           <div class="flex flex-row">
             <div><button id="btnCancel">Cancel</button></div>
