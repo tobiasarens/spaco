@@ -16,4 +16,6 @@
     --color-correct-txt: oklch(21% 0.034 264.665);
     --color-incorrect: oklch(80.8% 0.114 19.571);
     --color-incorrect-txt: oklch(14.1% 0.005 285.823);
+
+    --color-link-txt: oklch(68.1% 0.162 75.834);
 }

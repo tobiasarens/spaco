@@ -99,7 +99,6 @@ function waitingKeypress() {
 }
 
 function checkAnswer(answer) {
-
   var sol = currentWord.solution;
   sol = sol.replaceAll("ó", "oo");
   sol = sol.replaceAll("á", "aa");
@@ -107,7 +106,7 @@ function checkAnswer(answer) {
   sol = sol.replaceAll("é", "ee");
   sol = sol.replaceAll("ú", "uu");
 
-  return answer === currentWord.solution || answer === sol;
+  return answer === currentWord.solution || (!options.strictMode && answer === sol);
 }
 
 inputEl.addEventListener("keydown", async e => {
@@ -208,14 +207,14 @@ btnSave.addEventListener("click", () => saveAndHideOptions());
 
 function getAllowedPersons(options) {
   var allowed = [];
-  if (options.sg1) allowed.push("sg1");
-  if (options.sg2) allowed.push("sg2");
-  if (options.sg3) allowed.push("sg3");
-  if (options.pl1) allowed.push("pl1");
-  if (options.pl2) allowed.push("pl2");
-  if (options.pl3) allowed.push("pl3");
+  if (options.sg1) allowed.push(1);
+  if (options.sg2) allowed.push(2);
+  if (options.sg3) allowed.push(3);
+  if (options.pl1) allowed.push(4);
+  if (options.pl2) allowed.push(5);
+  if (options.pl3) allowed.push(6);
 
-  return allowed.length > 0 ? allowed : ["sg1"];
+  return allowed.length > 0 ? allowed : [1];
 }
 
 function getAllowedTenses(options) {

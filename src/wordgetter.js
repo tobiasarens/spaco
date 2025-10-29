@@ -47,8 +47,20 @@ export function getRandomWord() {
     };
 }
 
+/**
+ * 
+ * @param  allowedTenses: List of strings of tenses 
+ * @param  allowedPersons List of integers! of person (1-6)
+ * @returns 
+ */
 export function getRandomWordConstraint(allowedTenses, allowedPersons) {
-    var person = allowedPersons[getRandomInt(allowedPersons.length)];
+    var personNumber = allowedPersons[getRandomInt(allowedPersons.length)];
+    var person = personById[personNumber];
+    if (personNumber === 3) {
+        person = pron_sg_third[getRandomInt(pron_sg_third.length)];
+    } else if (personNumber === 6) {
+        person = pron_pl_third[getRandomInt(pron_pl_third.length)];
+    }
     var tense = allowedTenses[getRandomInt(allowedTenses.length)];
     var book = tenses[tense];
     var row = book[getRandomInt(book.length)];
