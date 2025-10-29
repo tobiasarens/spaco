@@ -18,7 +18,7 @@ const currentStreakEl = document.getElementById("val_current_streak");
 const maxStreakEl = document.getElementById("val_max_streak");
 
 var currentWord;
-var currentStreak = 0; 
+var currentStreak = 0;
 var maxStreak = 0;
 
 var options = {
@@ -31,6 +31,7 @@ var options = {
   pl1: true,
   pl2: true,
   pl3: true,
+  strictMode: false
 };
 
 function showCorrectBox(isCorrect, answer, solution) {
@@ -110,19 +111,19 @@ function checkAnswer(answer) {
 }
 
 inputEl.addEventListener("keydown", async e => {
-  
+
   const answer = inputEl.value.trim().toLowerCase();
 
   if (answer !== "" && e.key === "Enter") {
     e.preventDefault();
     hideIncorrectBox();
-    
+
     console.log("Antwort:", answer);
-    if(checkAnswer(answer)) {
+    if (checkAnswer(answer)) {
       console.log("correct");
 
       currentStreak++;
-      if(currentStreak > maxStreak) {
+      if (currentStreak > maxStreak) {
         maxStreak = currentStreak;
       }
 
@@ -147,8 +148,29 @@ const btnCancel = document.getElementById("btnCancel");
 const btnSave = document.getElementById("btnSave");
 
 function showOptions() {
+  matchOptionUi(options);
   mainViewEl.setAttribute("hidden", "true");
   optionsViewEl.removeAttribute("hidden");
+}
+
+function matchOptionUi(options) {
+  document.getElementById("ckPresente").checked = options.presente;
+  document.getElementById("ckIndefinido").checked = options.indefinido;
+  document.getElementById("ckImperfecto").checked = options.imperfecto;
+  document.getElementById("ckSg1").checked = options.sg1;
+  document.getElementById("ckSg2").checked = options.sg2;
+  document.getElementById("ckSg3").checked = options.sg3;
+  document.getElementById("ckPl1").checked = options.pl1;
+  document.getElementById("ckPl2").checked = options.pl2;
+  document.getElementById("ckPl3").checked = options.pl3;
+
+  document.getElementById("ckStrictMode").checked = options.strictMode;
+
+  if(options.strictMode) {
+    document.getElementById("ease_mode_enabled").setAttribute("hidden", "true");
+  } else {
+    document.getElementById("ease_mode_enabled").removeAttribute("hidden");
+  }
 }
 
 function saveOptions() {
@@ -162,7 +184,10 @@ function saveOptions() {
   options.pl2 = document.getElementById("ckPl2").checked;
   options.pl3 = document.getElementById("ckPl3").checked;
 
+  options.strictMode = document.getElementById("ckStrictMode").checked;
+
   console.log("new options: ", options);
+  matchOptionUi(options);
 }
 
 function hideOptions() {
@@ -195,7 +220,7 @@ function getAllowedPersons(options) {
 
 function getAllowedTenses(options) {
   var allowed = [];
-  if (options.presente)   allowed.push("presente");
+  if (options.presente) allowed.push("presente");
   if (options.indefinido) allowed.push("indefinido");
   if (options.imperfecto) allowed.push("imperfecto");
 

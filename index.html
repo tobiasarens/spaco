@@ -1,155 +1,180 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Spanish Conjugator</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open+Sans"
-    />
-    <link href="/src/tailwind.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="bg-back flex h-screen text-txtpanel">
-      <div
-        id="main_content_view"
-        class="flex flex-col gap-5 m-auto max-w-xl bg-panel min-w-xl min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]"
-      >
-        <div class="mx-auto text-4xl pb-3">Spanish Conjugation Practice</div>
-        <div id="streaks_container" class="flex flex-row items-stretch">
-          <div class="flex flex-col">
-            <div>Current Streak:</div>
-            <div id="val_current_streak" class="mx-auto">100</div>
-          </div>
-          <div class="flex-1"></div>
-          <div class="flex flex-col">
-            <div>Max Streak:</div>
-            <div id="val_max_streak" class="mx-auto">100</div>
-          </div>
-        </div>
-        <div class="mx-auto flex flex-col gap-2 bg-main">
-          <div id="verb_spanish" class="text-4xl mx-auto">tener</div>
-          <div id="verb_english" class="mx-auto">have</div>
-          <div class="flex flex-row mx-auto">
-            <div id="tense_card" class="flex flex-col">
-              <div
-                id="tense"
-                class="bg-tense-card text-tense-font p-1 rounded-lg"
-              >
-                present
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="min-h-23">
-          <div
-            id="incorrect_box"
-            class="m-auto min-w-20 border-3 border-black max-w-60 max-h-20"
-          >
-            <div
-              id="solution_correct"
-              class="bg-correct text-correct-txt flex flex-col"
-            >
-              <div class="mx-auto font-bold">Correct!</div>
-              <div id="correct_answer" class="mx-auto">Your solution</div>
-            </div>
-            <div
-              id="solution_incorrect"
-              class="bg-incorrect text-incorrect-txt flex flex-col"
-            >
-              <div class="mx-auto font-bold">Incorrect</div>
-              <div id="incorrect_answer" class="mx-auto line-through">
-                Your solution
-              </div>
-              <div id="incorrect_solution" class="mx-auto">
-                correct solution
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mx-auto min-h-5">
-          <div id="continue_text" class="mx-auto">Press Space to continue</div>
-        </div>
-        <div class="mx-auto rounded-2xl flex flex-row">
-          <div id="pronoun" class="my-auto text-xl pr-3">yo</div>
-          <input
-            id="main-text-input"
-            type="text"
-            maxlength="50"
-            aria-label="Answer"
-            class="bg-entry-box text-black w-70 min-h-10 rounded-2xl px-3 border-3 border-border-panel"
-          />
-        </div>
-        <div class="flex flex-row">
-          <div class="text-border-panel">Made by Tobias Arens</div>
-          <div class="flex-1"></div>
-          <div>
-            <button id="btnOption">Options ⚙️</button>
-          </div>
-        </div>
-      </div>
 
-      <div
-        id="options_content_view"
-        class="flex flex-col m-auto max-w-xl bg-panel min-w-md min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]"
-      >
-        <div class="mx-auto text-3xl pb-5">Options</div>
-        <div class="mx-auto">
-          <div class="text-lg mx-10">Tenses</div>
-          <hr class="pb-1" />
-          <div>
-            <input id="ckPresente" type="checkbox" checked />
-            <label for="ckPresente">ask presente</label>
-          </div>
-          <div>
-            <input id="ckIndefinido" type="checkbox" checked />
-            <label for="ckIndefinido">ask preterito / indefinido</label>
-          </div>
-          <div>
-            <input id="ckImperfecto" type="checkbox" checked />
-            <label for="ckImperfecto">ask imperfecto</label>
-          </div>
-        </div>
-        <div class="mx-auto pt-6">
-          <div class="text-lg mx-10">Personas</div>
-          <hr class="pb-1" />
-          <div>
-            <input id="ckSg1" type="checkbox" checked />
-            <label for="ckPresent">ask yu</label>
-          </div>
-          <div>
-            <input id="ckSg2" type="checkbox" checked />
-            <label for="ckIndefinido">ask tu</label>
-          </div>
-          <div>
-            <input id="ckSg3" type="checkbox" checked />
-            <label for="ckSg3">ask el/la</label>
-          </div>
-          <div>
-            <input id="ckPl1" type="checkbox" checked />
-            <label for="ckPl1">ask nosotros</label>
-          </div>
-          <div>
-            <input id="ckPl2" type="checkbox" checked />
-            <label for="ckPl2">ask vosotros</label>
-          </div>
-          <div>
-            <input id="ckPl3" type="checkbox" checked />
-            <label for="ckPl3">ask ellos/ellas</label>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>Spanish Conjugator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+  <link href="/src/tailwind.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="bg-back flex h-screen text-txtpanel">
+    <div id="main_content_view"
+      class="flex flex-col gap-5 m-auto max-w-xl bg-panel min-w-xl min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]">
+      <div class="mx-auto text-4xl pb-3">Spanish Conjugation Practice</div>
+      <div id="streaks_container" class="flex flex-row items-stretch">
+        <div class="flex flex-col">
+          <div>Current Streak:</div>
+          <div id="val_current_streak" class="mx-auto">100</div>
         </div>
         <div class="flex-1"></div>
-
-        <div class="flex flex-row">
-          <div><button id="btnCancel">Cancel</button></div>
-          <div class="flex-1"></div>
-          <div><button id="btnSave">Save</button></div>
+        <div class="flex flex-col">
+          <div>Max Streak:</div>
+          <div id="val_max_streak" class="mx-auto">100</div>
+        </div>
+      </div>
+      <div class="mx-auto flex flex-col gap-2 bg-main">
+        <div id="verb_spanish" class="text-4xl mx-auto">tener</div>
+        <div id="verb_english" class="mx-auto">have</div>
+        <div class="flex flex-row mx-auto">
+          <div id="tense_card" class="flex flex-col">
+            <div id="tense" class="bg-tense-card text-tense-font p-1 rounded-lg">
+              present
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-h-23">
+        <div id="incorrect_box" class="m-auto min-w-20 border-3 border-black max-w-60 max-h-20">
+          <div id="solution_correct" class="bg-correct text-correct-txt flex flex-col">
+            <div class="mx-auto font-bold">Correct!</div>
+            <div id="correct_answer" class="mx-auto">Your solution</div>
+          </div>
+          <div id="solution_incorrect" class="bg-incorrect text-incorrect-txt flex flex-col">
+            <div class="mx-auto font-bold">Incorrect</div>
+            <div id="incorrect_answer" class="mx-auto line-through">
+              Your solution
+            </div>
+            <div id="incorrect_solution" class="mx-auto">
+              correct solution
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mx-auto min-h-5">
+        <div id="continue_text" class="mx-auto">Press Space to continue</div>
+      </div>
+      <div class="mx-auto rounded-2xl flex flex-row">
+        <div id="pronoun" class="my-auto text-xl pr-3">yo</div>
+        <input id="main-text-input" type="text" maxlength="50" aria-label="Answer"
+          class="bg-entry-box text-black w-70 min-h-10 rounded-2xl px-3 border-3 border-border-panel" />
+          <div id="ease_mode_enabled" class="text-border-panel m-auto pl-4">Not strict<span class="relative group cursor-help">
+              <button class="group cursor-help" type="button"><svg class="w-4 h-4 ms-2 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor"
+  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+    clip-rule="evenodd"></path>
+</svg><span class="sr-only">Show information</span ></button>
+              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block
+                w-48 bg-gray-800 text-white text-sm rounded p-2 shadow-lg">
+                Strict Mode disabled. <br>
+                You may use double vowels for accenting (e.g. ii for í) <br>
+                teneeis = tenéis.
+              </div>
+            </span></div>
+      </div>
+      <div class="flex flex-row">
+        <div class="text-border-panel">Made by Tobias Arens</div>
+        <div class="flex-1"></div>
+        <div>
+          <button id="btnOption">Options ⚙️</button>
         </div>
       </div>
 
-      <!-- End of Background div -->
     </div>
 
-    <script type="module" src="src/main.js"></script>
-  </body>
+    <div id="options_content_view"
+      class="flex flex-col m-auto max-w-xl bg-panel min-w-md min-h-1/2 px-7 pt-6 pb-3 rounded-4xl border-border-panel border-3 font-[Open_Sans]">
+      <div class="mx-auto text-3xl pb-5">Options</div>
+      <div class="mx-auto">
+        <div class="text-lg mx-10">Tenses</div>
+        <hr class="pb-1" />
+        <div>
+          <input id="ckPresente" type="checkbox" checked />
+          <label for="ckPresente">ask presente</label>
+        </div>
+        <div>
+          <input id="ckIndefinido" type="checkbox" checked />
+          <label for="ckIndefinido">ask preterito / indefinido</label>
+        </div>
+        <div>
+          <input id="ckImperfecto" type="checkbox" checked />
+          <label for="ckImperfecto">ask imperfecto</label>
+        </div>
+      </div>
+      <div class="mx-auto pt-6">
+        <div class="text-lg mx-10">Personas</div>
+        <hr class="pb-1" />
+        <div>
+          <input id="ckSg1" type="checkbox" checked />
+          <label for="ckPresent">ask yu</label>
+        </div>
+        <div>
+          <input id="ckSg2" type="checkbox" checked />
+          <label for="ckIndefinido">ask tu</label>
+        </div>
+        <div>
+          <input id="ckSg3" type="checkbox" checked />
+          <label for="ckSg3">ask el/la</label>
+        </div>
+        <div>
+          <input id="ckPl1" type="checkbox" checked />
+          <label for="ckPl1">ask nosotros</label>
+        </div>
+        <div>
+          <input id="ckPl2" type="checkbox" checked />
+          <label for="ckPl2">ask vosotros</label>
+        </div>
+        <div>
+          <input id="ckPl3" type="checkbox" checked />
+          <label for="ckPl3">ask ellos/ellas</label>
+        </div>
+      </div>
+      <div class="mx-auto pt-6">
+        <div class="text-lg mx-10">Misc</div>
+        <hr class="pb-1" />
+        <div class="">
+          <input id="ckStrictMode" type="checkbox" />
+          <label for="ckStrictMode">Strict mode<span class="relative group cursor-help">
+              <button class="group cursor-help" type="button"><svg class="w-4 h-4 ms-2 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor"
+  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+    clip-rule="evenodd"></path>
+</svg><span class="sr-only">Show information</span ></button>
+              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block
+                w-48 bg-gray-800 text-white text-sm rounded p-2 shadow-lg">
+                When enabled, words have to match exactly. <br>
+                Disabled strict mode allows to use double vowels for accenting (e.g. ii for í) <br>
+                Useful for keyboards without accent keys.
+              </div>
+            </span>
+          </label>
+        </div>
+      </div>
+
+    <div class="flex-1"></div>
+
+    <div class="flex flex-row pt-3">
+      <div><button id="btnCancel">Cancel</button></div>
+      <div class="flex-1"></div>
+      <div><button id="btnSave">Save</button></div>
+    </div>
+  </div>
+
+  <!-- End of Background div -->
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+
 </html>
+
+<!-- Question Mark SVG -->
+<!--svg class="w-4 h-4 ms-2 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor"
+  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+    clip-rule="evenodd"></path>
+</svg><span class="sr-only">Show information</span -->
