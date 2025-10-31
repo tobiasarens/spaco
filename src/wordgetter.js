@@ -1,5 +1,3 @@
-import Papa from "papaparse";
-
 import words_present from "./worddata_present.csv";
 import words_indefinido from "./worddata_indefinido.csv";
 import words_imperfecto from "./worddata_imperfecto.csv";
