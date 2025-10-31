@@ -1,4 +1,5 @@
-import { getRandomWord, getRandomWordConstraint } from "./wordgetter";
+import { getRandomWordConstraint } from "./wordgetter";
+import "./tailwind.css";
 
 const infinitiveEl = document.getElementById("verb_spanish");
 const englishEL = document.getElementById("verb_english");
@@ -231,4 +232,3 @@ hideIncorrectBox();
 nextQuestion();
 
 // debug tmp
-showOptions();
