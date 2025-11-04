@@ -6,16 +6,16 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-const pronomina = ["yo", "tu", "el", "nosotros", "vosotros", "ellos"];
+const pronomina = ["yo", "tú", "él", "nosotros", "vosotros", "ellos"];
 const pronomina_dict = {
     sg1: "yo",
-    sg2: "tu", 
-    sg3: "el", 
+    sg2: "tú", 
+    sg3: "él", 
     pl1: "nosotros",
     pl2: "vosotros",
     pl3: "ellos"
 }
-const pron_sg_third = ["el","la"];
+const pron_sg_third = ["él, ella"];
 const pron_pl_third = ["ellos", "ellas"];
 
 const tenseById = ["presente", "indefinido", "imperfecto"];
