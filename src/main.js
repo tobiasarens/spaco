@@ -1,6 +1,8 @@
 import { getRandomWordConstraint } from "./wordgetter";
 import "./tailwind.css";
 
+
+const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
 const infinitiveEl = document.getElementById("verb_spanish");
 const englishEL = document.getElementById("verb_english");
 const tenseEl = document.getElementById("tense");
@@ -18,6 +20,8 @@ const confirmEl = document.getElementById("continue_text");
 const currentStreakEl = document.getElementById("val_current_streak");
 const maxStreakEl = document.getElementById("val_max_streak");
 
+
+
 var currentWord;
 var currentStreak = 0;
 var maxStreak = 0;
@@ -34,6 +38,13 @@ var options = {
   pl3: true,
   strictMode: false
 };
+
+function init() {
+  console.log(isTouch);
+  if(isTouch) {
+    continue_text.textContent = "Touch to continue";
+  }
+}
 
 function showCorrectBox(isCorrect, answer, solution) {
   var toShowEl = isCorrect ? sol_correctEl : sol_incorrectEl;
@@ -74,17 +85,33 @@ function nextQuestion() {
   // Speichern für spätere Überprüfung
 }
 
+
 var confirming = false;
 
 async function waitForConfirm() {
   confirmEl.removeAttribute("hidden");
   inputEl.disabled = true;
-  await waitingKeypress();
+  if(isTouch) {
+    await awaitTouch();
+  }else {
+    await waitingKeypress();
+  }
 
 
   hideIncorrectBox()
   inputEl.disabled = false;
   nextQuestion();
+}
+
+function awaitTouch() {
+  return new Promise((resolve) => {
+    function onKeyHandler(e) {
+      e.preventDefault();
+      document.removeEventListener("touchend", onKeyHandler);
+      resolve();
+    }
+    document.addEventListener("touchend", onKeyHandler);
+  });
 }
 
 function waitingKeypress() {
@@ -227,6 +254,7 @@ function getAllowedTenses(options) {
   return allowed.length > 0 ? allowed : ["presente"];
 }
 
+init();
 hideOptions();
 hideIncorrectBox();
 nextQuestion();
