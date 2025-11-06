@@ -15,7 +15,7 @@ const pronomina_dict = {
     pl2: "vosotros",
     pl3: "ellos"
 }
-const pron_sg_third = ["él, ella"];
+const pron_sg_third = ["él", "ella"];
 const pron_pl_third = ["ellos", "ellas"];
 
 const tenseById = ["presente", "indefinido", "imperfecto"];
