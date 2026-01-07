@@ -3,17 +3,42 @@ from pathlib import Path
 from typing import List
 import csv
 
-# list of words that should be imported
-WORD_LIST = ["tener", "comer", "ver"]
+# base directory in project dir
+BASE_DIR = "src/data"
+
+WORD_FILE = "wordlist.csv"
 
 # list of tenses that should be looked up
 # also used as file suffix for the final csv
-TENSE_LIST = ["present", "indefinido", "imperfecto"]
+# TENSE_LIST = ["present", "indefinido", "imperfecto"]
+TENSE_LIST = ["imp_aff"]
 
 COLUMNS = ["infinitive", "sg1", "sg2", "sg3", "pl1", "pl2", "pl3"]
 
 DATABASE = pd.read_csv("src/util/database_complete.csv", header=0, index_col=["infinitive", "mood", "tense"])
-DB_TENSE_MAP = {"present": "Presente", "indefinido": "Pretérito", "imperfecto": "Imperfecto"}
+DB_TENSE_MAP = {
+    "present": "Presente", 
+    "indefinido": "Pretérito", 
+    "imperfecto": "Imperfecto",
+    "imp_aff": "Imperativo Afirmativo"    
+}
+
+
+# dict for each tense a list of moods that should be copied in the corresponding folder
+# the tense corrpesponds to the folder name
+# the mood will be the suffix of the wordlist_xxx.csv file.
+DB_COPY_MAP = {
+    "Presente": {
+        "Indicativo": "indicativo",
+        "Imperativo Afirmativo": "imp_aff"
+    },
+    "Pretérito": {
+        "Indicativo": "indicativo"
+    },
+    "Imperfecto": {
+        "Indicativo": "indicativo"
+    }
+}
 
 
 def read_word_requests(path: str) -> List[str]:
@@ -26,8 +51,8 @@ def read_word_requests(path: str) -> List[str]:
         pass
     return []
 
-def get_filename(tense: str) -> Path:
-    return Path(f"src/worddata_{tense}.csv")
+def get_filename(tense: str, mood: str) -> Path:
+    return Path(f"{BASE_DIR}/{tense}/worddata_{DB_COPY_MAP[tense][mood]}.csv")
 
 def read_existing_words(tense) -> pd.DataFrame:
     file = get_filename(tense)
@@ -40,12 +65,11 @@ def read_existing_words(tense) -> pd.DataFrame:
         print("No file existing")
     return df
 
-def fetch_verb_forms(verb, tense):
-    if tense not in DB_TENSE_MAP.keys():
-        return None
+def fetch_verb_forms(verb, tense, mood):
     try:
-        entry = DATABASE.loc[(verb, "Indicativo", DB_TENSE_MAP[tense])]
+        entry = DATABASE.loc[(verb, mood, tense)]
     except KeyError:
+        print(f"combination {mood} / {tense} not found in DB")
         return None
     return [verb, entry["form_1s"], entry["form_2s"], entry["form_3s"], entry["form_1p"], entry["form_2p"], entry["form_3p"]]
 
@@ -65,8 +89,8 @@ def dump_verb_data(df: pd.DataFrame, tense: str):
     df.to_csv(filename, index=True)
 
 if __name__ == "__main__":
-    request = read_word_requests("src/wordlist.csv")
-    for tense in TENSE_LIST:
-        df = read_existing_words(tense)
+    request = read_word_requests(BASE_DIR + WORD_FILE)
+    for tense, moods in DB_COPY_MAP.items():
+        df = read_existing_words(tense, mood)
         df = fill_dataframe(df, tense, request)
         dump_verb_data(df, tense)
