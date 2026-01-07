@@ -1,24 +1,23 @@
 # Spanish Conjugation Practice - SpaCo
 
-Small project to practice spanish conjugation. 
-Have a simple web-frontend that shows a verb, a tense and asks for the correct form.
+Small web app to practice spanish conjugation. 
+URL: https://tobiasarens.de/spaco
 
-<p style="text-align:center">
-<img alt="Screenshot of the App" src="https://github.com/user-attachments/assets/5c77f963-36cd-41a3-8077-96647c6de0e7" />
-</p>
-
-The options panel features some control about the randomizer like only allowing specific tenses or pronouns for more specialized training.
+<img width="593" height="567" alt="image" src="https://github.com/user-attachments/assets/6e87db8a-a05a-4467-b2f9-89378adf0fe1" /> 
 
 Heavily inspired by this [Japanese conjugation practice tool](https://github.com/baileysnyder/japanese-conjugation) made by Bailey Synder.  
 Also credits to Fred Jehle who created an open [conjugation database](https://github.com/ghidinelli/fred-jehle-spanish-verbs) with over 600 verbs.
 
-## Limitations and Future Plans
+## Features
+- The options panel features some control about the randomizer like only allowing specific tenses or pronouns for more specialized training.
+- By default, you can use double vowel for accents (e.g. `ee` = `é`, `uu` = `ú`, etc)
+
+## Future Plans
 
 1) Add more tenses and verbs
 2) Add some more options
-3) Host it somewhere
 
-# Installation
+# Local Installation
 
 ```
 # install dependencies
