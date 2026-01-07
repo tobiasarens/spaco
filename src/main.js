@@ -1,5 +1,6 @@
 import { getRandomWordConstraint } from "./wordgetter";
 import "./tailwind.css";
+import data from "../about.json" with { type: "json" };
 
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
@@ -20,7 +21,7 @@ const confirmEl = document.getElementById("continue_text");
 const currentStreakEl = document.getElementById("val_current_streak");
 const maxStreakEl = document.getElementById("val_max_streak");
 
-
+const versionEl = document.getElementById("txtVersion");
 
 var currentWord;
 var currentStreak = 0;
@@ -44,6 +45,9 @@ function init() {
   if(isTouch) {
     continue_text.textContent = "Touch to continue";
   }
+
+  // read version
+  versionEl.textContent = "Version " + data.version;
 }
 
 function showCorrectBox(isCorrect, answer, solution) {
