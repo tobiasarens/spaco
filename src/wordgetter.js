@@ -39,7 +39,7 @@ function getPronoun(id) {
 }
 
 const forms = {
-  pres_ind: makeForm(words_present, "Indicativo", "Presente"),
+  pres_ind: makeForm(words_present, "Indicativo", "Presente", "Presente"),
   pres_imp_aff: makeForm(
     words_pres_imp_aff,
     "Imperative Affirmative",
