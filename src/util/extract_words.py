@@ -22,7 +22,8 @@ DB_TENSE_MAP = {
     "present": "Presente", 
     "indefinido": "Pretérito", 
     "imperfecto": "Imperfecto",
-    "imp_aff": "Imperativo Afirmativo"    
+    "imp_aff": "Imperativo Afirmativo",
+    "imp_neg": "Imperativo Negativo"
 }
 
 
@@ -32,7 +33,8 @@ DB_TENSE_MAP = {
 DB_COPY_MAP = {
     "Presente": {
         "Indicativo": "indicativo",
-        "Imperativo Afirmativo": "imp_aff"
+        "Imperativo Afirmativo": "imp_aff",
+        "Imperativo Negativo": "imp_neg"
     },
     "Pretérito": {
         "Indicativo": "indefinido"
@@ -74,6 +76,11 @@ def fetch_verb_forms(verb, tense, mood):
     except KeyError:
         print(f"combination {mood} / {tense} not found in DB for verb {verb}")
         return None
+    
+    # the imperative is stored wrongly in the database. They swapped the persons
+    if mood in ["Imperativo Afirmativo", "Imperativo Negativo"]:
+        return [verb, entry["form_1s"], entry["form_2s"], entry["form_2p"], entry["form_1p"], entry["form_3s"], entry["form_3p"]]
+    
     return [verb, entry["form_1s"], entry["form_2s"], entry["form_3s"], entry["form_1p"], entry["form_2p"], entry["form_3p"]]
 
 def fill_dataframe(df: pd.DataFrame, tense, mood, verbs):
