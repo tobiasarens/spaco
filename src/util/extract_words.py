@@ -35,7 +35,7 @@ DB_COPY_MAP = {
         "Imperativo Afirmativo": "imp_aff"
     },
     "Pretérito": {
-        "Indicativo": "indicativo"
+        "Indicativo": "indefinido"
     },
     "Imperfecto": {
         "Indicativo": "indicativo"
