@@ -1,12 +1,20 @@
-import words_present from "./worddata_present.csv";
-import words_indefinido from "./worddata_indefinido.csv";
-import words_imperfecto from "./worddata_imperfecto.csv";
+import words_present from "./data/Presente/worddata_indicativo.csv";
+import words_pres_ind_aff from "./data/Presente/worddata_imp_aff.csv"
+import words_indefinido from "./data/Pretérito/worddata_indefinido.csv";
+import words_imperfecto from "./data/Imperfecto/worddata_indicativo.csv";
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
+function getRandomFromList(list) {
+  return list[getRandomInt(list.length)];
+}
 
-const pronomina = ["yo", "tú", "él", "nosotros", "vosotros", "ellos"];
+let enabledForms = []
+let enabledPersons = [];
+
+const personById = ["", "sg1", "sg2", "sg3", "pl1", "pl2", "pl3"];
+
 const pronomina_dict = {
     sg1: "yo",
     sg2: "tú", 
@@ -17,41 +25,70 @@ const pronomina_dict = {
 }
 const pron_sg_third = ["él", "ella"];
 const pron_pl_third = ["ellos", "ellas"];
+function getPronoun(id) {
+  if(id == 3) {
+    return getRandomFromList(pron_sg_third);
+  } 
+  if(id == 6) {
+    return getRandomFromList(pron_pl_third);
+  }
+  return pronomina_dict[personById[id]];
+}
 
-const tenseById = ["presente", "indefinido", "imperfecto"];
-const tenses = {
-    "presente":words_present, 
-    "indefinido": words_indefinido, 
-    "imperfecto": words_imperfecto
-};
-const personById = ["sg1", "sg2", "sg3", "pl1", "pl2", "pl3"];
+const forms = {
+  "pres_ind": makeForm(words_present, "Indicativo", "Presente"),
+  "pres_imp_aff": makeForm(words_pres_ind_aff, "Imperative", "Presente", [2, 3, 5, 6]),
+  "indef_ind": makeForm(words_indefinido, "Indicativo", "Preterito", "Indefinido"),
+  "imp_ind": makeForm(words_imperfecto, "Indicativo",  "Imperfecto"),
+}
 
-/**
- * 
- * @param  allowedTenses: List of strings of tenses 
- * @param  allowedPersons List of integers! of person (1-6)
- * @returns 
- */
-export function getRandomWordConstraint(allowedTenses, allowedPersons) {
-    var personNumber = allowedPersons[getRandomInt(allowedPersons.length)];
-    var person = personById[personNumber - 1];
-    var tense = allowedTenses[getRandomInt(allowedTenses.length)];
-    var book = tenses[tense];
-    var row = book[getRandomInt(book.length)];
-    var solution = row[person];
-    
-    var pronoun = pronomina_dict[person];
-    if (personNumber === 3) {
-      pronoun = pron_sg_third[getRandomInt(pron_sg_third.length)];
-    } else if (personNumber === 6) {
-      pronoun = pron_pl_third[getRandomInt(pron_pl_third.length)];
-    }
+function makeForm(words, mood, tense, display_name=null, pronoun_overwrite=null) {
+  let persons = (pronoun_overwrite != null) ? pronoun_overwrite : [1, 2, 3, 4, 5, 6];
+  let display = (display_name != null) ? display_name : mood + " " + tense;
+  return {
+    "words": words,
+    "mood": mood,
+    "tense": tense,
+    "display_name": display,
+    "persons": persons
+  }
+}
 
-    return {
-      infinite: row["infinitive"],
-      //"english": row["english"],
-      tense: tense,
-      person: pronoun,
-      solution: solution,
-    };
+export function updateConstraints(options) {
+  enabledPersons = [];
+  enabledForms = [];
+  if (options.sg1) enabledPersons.push(1);
+  if (options.sg2) enabledPersons.push(2);
+  if (options.sg3) enabledPersons.push(3);
+  if (options.pl1) enabledPersons.push(4);
+  if (options.pl2) enabledPersons.push(5);
+  if (options.pl3) enabledPersons.push(6);
+
+  if (options.presente) enabledForms.push("pres_ind");
+  if (options.indefinido) enabledForms.push("indef_ind");
+  if (options.imperfecto) enabledForms.push("imp_ind");
+
+  console.log("updated random constraints");
+  //console.log("allowed forms: " + enabledForms);
+  //console.log("allowed persons: " + enabledPersons);
+}
+
+export function getRandomWord() {
+  let chosenForm = getRandomFromList(enabledForms);
+  let formData = forms[chosenForm];
+  let persons = enabledPersons.filter(val => formData.persons.includes(val));
+  let chosenPerson = getRandomFromList(persons);
+
+  let chosenWordRow = getRandomFromList(formData.words);
+  let chosenWordInfinitive = chosenWordRow["infinitive"];
+  let chosenWordSolution = chosenWordRow[personById[chosenPerson]];
+
+  return {
+    infinitive: chosenWordInfinitive,
+    solution: chosenWordSolution,
+    mood: formData.mood,
+    tense: formData.tense,
+    display_name: formData.display_name,
+    pronoun: getPronoun(chosenPerson)
+  }
 }

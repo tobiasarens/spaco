@@ -1,4 +1,4 @@
-import { getRandomWordConstraint } from "./wordgetter";
+import { getRandomWord, updateConstraints } from "./wordgetter";
 import "./tailwind.css";
 import data from "../about.json" with { type: "json" };
 
@@ -74,14 +74,16 @@ function nextQuestion() {
   maxStreakEl.textContent = maxStreak;
   currentStreakEl.textContent = currentStreak;
 
-  var nextWord = getRandomWordConstraint(getAllowedTenses(options), getAllowedPersons(options));
+  //var nextWord = getRandomWordConstraint(getAllowedTenses(options), getAllowedPersons(options));
+  let nextWord = getRandomWord();
   currentWord = nextWord;
   console.log(nextWord);
 
-  infinitiveEl.textContent = nextWord.infinite;
+  infinitiveEl.textContent = nextWord.infinitive;
   englishEL.textContent = "";//nextWord.english;
-  tenseEl.textContent = nextWord.tense;
-  pronounEl.textContent = nextWord.person;
+  tenseEl.textContent = nextWord.display_name;
+
+  pronounEl.textContent = nextWord.pronoun;
 
   inputEl.value = "";
   inputEl.focus();
@@ -218,6 +220,7 @@ function saveOptions() {
   options.strictMode = document.getElementById("ckStrictMode").checked;
 
   console.log("new options: ", options);
+  updateConstraints(options);
   matchOptionUi(options);
 }
 
@@ -259,7 +262,7 @@ function getAllowedTenses(options) {
 }
 
 init();
-hideOptions();
+saveAndHideOptions();
 hideIncorrectBox();
 nextQuestion();
 
