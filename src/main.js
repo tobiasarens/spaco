@@ -29,6 +29,8 @@ var maxStreak = 0;
 
 var options = {
   presente: true,
+  pres_imp_aff: true,
+  pres_imp_neg: true,
   indefinido: true,
   imperfecto: true,
   sg1: true,
@@ -190,6 +192,8 @@ function matchOptionUi(options) {
   document.getElementById("ckPresente").checked = options.presente;
   document.getElementById("ckIndefinido").checked = options.indefinido;
   document.getElementById("ckImperfecto").checked = options.imperfecto;
+  document.getElementById("ckImpAff").checked = options.pres_imp_aff;
+  document.getElementById("ckImpNeg").checked = options.pres_imp_neg;
   document.getElementById("ckSg1").checked = options.sg1;
   document.getElementById("ckSg2").checked = options.sg2;
   document.getElementById("ckSg3").checked = options.sg3;
@@ -210,6 +214,8 @@ function saveOptions() {
   options.presente = document.getElementById("ckPresente").checked;
   options.indefinido = document.getElementById("ckIndefinido").checked;
   options.imperfecto = document.getElementById("ckImperfecto").checked;
+  options.pres_imp_aff = document.getElementById("ckImpAff").checked;
+  options.pres_imp_neg = document.getElementById("ckImpNeg").checked;
   options.sg1 = document.getElementById("ckSg1").checked;
   options.sg2 = document.getElementById("ckSg2").checked;
   options.sg3 = document.getElementById("ckSg3").checked;
@@ -267,3 +273,4 @@ hideIncorrectBox();
 nextQuestion();
 
 // debug tmp
+showOptions();

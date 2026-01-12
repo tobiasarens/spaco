@@ -1,5 +1,6 @@
 import words_present from "./data/Presente/worddata_indicativo.csv";
-import words_pres_ind_aff from "./data/Presente/worddata_imp_aff.csv"
+import words_pres_imp_aff from "./data/Presente/worddata_imp_aff.csv";
+import words_pres_imp_neg from "./data/Presente/worddata_imp_neg.csv";
 import words_indefinido from "./data/Pretérito/worddata_indefinido.csv";
 import words_imperfecto from "./data/Imperfecto/worddata_indicativo.csv";
 
@@ -13,6 +14,8 @@ function getRandomFromList(list) {
 let enabledForms = []
 let enabledPersons = [];
 
+// first item is a placeholder such that sg1 = person 1 and pl3 = person 6
+// not starting at 0
 const personById = ["", "sg1", "sg2", "sg3", "pl1", "pl2", "pl3"];
 
 const pronomina_dict = {
@@ -36,11 +39,29 @@ function getPronoun(id) {
 }
 
 const forms = {
-  "pres_ind": makeForm(words_present, "Indicativo", "Presente"),
-  "pres_imp_aff": makeForm(words_pres_ind_aff, "Imperative", "Presente", [2, 3, 5, 6]),
-  "indef_ind": makeForm(words_indefinido, "Indicativo", "Preterito", "Indefinido"),
-  "imp_ind": makeForm(words_imperfecto, "Indicativo",  "Imperfecto"),
-}
+  pres_ind: makeForm(words_present, "Indicativo", "Presente"),
+  pres_imp_aff: makeForm(
+    words_pres_imp_aff,
+    "Imperative Affirmative",
+    "Presente",
+    "Imperativo Affirmativo",
+    [2, 3, 5, 6]
+  ),
+  pres_imp_neg: makeForm(
+    words_pres_imp_neg,
+    "Imperative neg",
+    "Presente",
+    "Imperativo negativo",
+    [2, 3, 5, 6]
+  ),
+  indef_ind: makeForm(
+    words_indefinido,
+    "Indicativo",
+    "Preterito",
+    "Indefinido"
+  ),
+  imp_ind: makeForm(words_imperfecto, "Indicativo", "Imperfecto"),
+};
 
 function makeForm(words, mood, tense, display_name=null, pronoun_overwrite=null) {
   let persons = (pronoun_overwrite != null) ? pronoun_overwrite : [1, 2, 3, 4, 5, 6];
@@ -67,6 +88,8 @@ export function updateConstraints(options) {
   if (options.presente) enabledForms.push("pres_ind");
   if (options.indefinido) enabledForms.push("indef_ind");
   if (options.imperfecto) enabledForms.push("imp_ind");
+  if (options.pres_imp_aff) enabledForms.push("pres_imp_aff");
+  if (options.pres_imp_neg) enabledForms.push("pres_imp_neg");
 
   console.log("updated random constraints");
   //console.log("allowed forms: " + enabledForms);
