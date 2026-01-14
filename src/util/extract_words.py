@@ -23,7 +23,8 @@ DB_TENSE_MAP = {
     "indefinido": "Pretérito", 
     "imperfecto": "Imperfecto",
     "imp_aff": "Imperativo Afirmativo",
-    "imp_neg": "Imperativo Negativo"
+    "imp_neg": "Imperativo Negativo",
+    "futuro": "Futuro"
 }
 
 
@@ -40,6 +41,10 @@ DB_COPY_MAP = {
         "Indicativo": "indefinido"
     },
     "Imperfecto": {
+        "Indicativo": "indicativo"
+    },
+    "Futuro":
+    {
         "Indicativo": "indicativo"
     }
 }
