@@ -3,6 +3,7 @@ import words_pres_imp_aff from "./data/Presente/worddata_imp_aff.csv";
 import words_pres_imp_neg from "./data/Presente/worddata_imp_neg.csv";
 import words_indefinido from "./data/Pretérito/worddata_indefinido.csv";
 import words_imperfecto from "./data/Imperfecto/worddata_indicativo.csv";
+import words_futuro from "./data/Futuro/worddata_indicativo.csv";
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -61,6 +62,7 @@ const forms = {
     "Indefinido"
   ),
   imp_ind: makeForm(words_imperfecto, "Indicativo", "Imperfecto"),
+  futuro: makeForm(words_futuro, "Indicativo", "Futuro", "Futuro")
 };
 
 function makeForm(words, mood, tense, display_name=null, pronoun_overwrite=null) {
@@ -90,6 +92,7 @@ export function updateConstraints(options) {
   if (options.imperfecto) enabledForms.push("imp_ind");
   if (options.pres_imp_aff) enabledForms.push("pres_imp_aff");
   if (options.pres_imp_neg) enabledForms.push("pres_imp_neg");
+  if (options.futuro) enabledForms.push("futuro");
 
   console.log("updated random constraints");
   //console.log("allowed forms: " + enabledForms);
