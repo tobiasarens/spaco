@@ -3,7 +3,7 @@ name: deploy CI
 
 on:
   push:
-    branches: [ "master", "tobiasarens-patch-1"]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
