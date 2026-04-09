@@ -10,13 +10,30 @@ on:
 jobs:
     
   deploy_job:
+    environment: production
     runs-on: ubuntu-latest
     container: node:lts-alpine
     steps:
       - run: apk add --no-cache openssh rsync
-      - run: eval $(ssh-agent -s)
-      - run: echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-      - run: ssh-keyscan "$WEBSITE_HOSTNAME" >> ~/.ssh/known_hosts
+      
+      - uses: actions/checkout@v6
       - run: npm ci
       - run: npm run build
-      - run: rsync -vrzO dist/ deploy@$WEBSITE_HOSTNAME:/opt/docker/spaco/www
+      
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@v8
+        with:
+          switches: -vzrO 
+          path: dist/
+          remote_path: ${{ vars.WEBSITE_PATH }}
+          remote_host: ${{ vars.WEBSITE_HOSTNAME }} 
+          remote_user: deploy
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      #- uses: actions/checkout@v4
+      # Make sure the @v0.9.0 matches the current version of the action
+      #- uses: webfactory/ssh-agent@v0.10.0
+       # with:
+       #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #-run: ssh-keyscan ${{ vars.WEBSITE_HOSTNAME }} >> ~/.ssh/known_hosts
+      #- run: rsync -vrzO dist/ deploy@${{ vars.WEBSITE_HOSTNAME }}:${{ vars.WEBSITE_PATH }}
