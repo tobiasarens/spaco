@@ -26,7 +26,7 @@ jobs:
           switches: -vzrO 
           path: dist/
           remote_path: ${{ vars.WEBSITE_PATH }}
-          remote_host: ${{ vars.WEBSITE_HOST }} 
+          remote_host: ${{ vars.WEBSITE_HOSTNAME }} 
           remote_user: deploy
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
       
