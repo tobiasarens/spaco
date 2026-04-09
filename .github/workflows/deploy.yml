@@ -23,4 +23,4 @@ jobs:
       - run: ssh-keyscan "${{ vars.WEBSITE_HOSTNAME }}" >> ~/.ssh/known_hosts
       - run: npm ci
       - run: npm run build
-      - run: rsync -vrzO dist/ deploy@$WEBSITE_HOSTNAME:/opt/docker/spaco/www
+      - run: rsync -vrzO dist/ deploy@"${{ vars.WEBSITE_HOSTNAME }}":"${{ vars.WEBSITE_PATH }}"
