@@ -1,0 +1,22 @@
+
+name: deploy CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+    
+  deploy_job:
+    runs-on: ubuntu-latest
+    container: node:lts-alpine
+    steps:
+      - run: apk add --no-cache openssh rsync
+      - run: eval $(ssh-agent -s)
+      - run: echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+      - run: ssh-keyscan "$WEBSITE_HOSTNAME" >> ~/.ssh/known_hosts
+      - run: npm ci
+      - run: npm run build
+      - run: rsync -vrzO dist/ deploy@$WEBSITE_HOSTNAME:/opt/docker/spaco/www
