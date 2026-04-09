@@ -16,10 +16,10 @@ jobs:
     steps:
       - run: apk add --no-cache openssh rsync
       
+      - uses: actions/checkout@v6
       - run: npm ci
       - run: npm run build
       
-      - uses: actions/checkout@v6
       - name: rsync deployments
         uses: burnett01/rsync-deployments@v8
         with:
