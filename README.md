@@ -1,7 +1,7 @@
 # Spanish Conjugation Practice - SpaCo
 
 Small web app to practice spanish conjugation. 
-URL: https://tobiasarens.de/spaco
+URL: https://spaco.tobiasarens.de
 
 <img width="593" height="567" alt="image" src="https://github.com/user-attachments/assets/6e87db8a-a05a-4467-b2f9-89378adf0fe1" /> 
 
