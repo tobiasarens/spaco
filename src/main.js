@@ -28,12 +28,18 @@ var currentStreak = 0;
 var maxStreak = 0;
 
 var options = {
+  // indicativo
   presente: true,
   pres_imp_aff: true,
   pres_imp_neg: true,
   indefinido: true,
   imperfecto: true,
   futuro:true,
+
+  // subjuntivo
+  presente_subjuntivo: true,
+
+
   sg1: true,
   sg2: true,
   sg3: true,
@@ -196,6 +202,9 @@ function matchOptionUi(options) {
   document.getElementById("ckImpAff").checked = options.pres_imp_aff;
   document.getElementById("ckImpNeg").checked = options.pres_imp_neg;
   document.getElementById("ckFuturo").checked = options.futuro;
+
+  document.getElementById("ckPresenteSubjuntivo").checked = options.presente_subjuntivo;
+
   document.getElementById("ckSg1").checked = options.sg1;
   document.getElementById("ckSg2").checked = options.sg2;
   document.getElementById("ckSg3").checked = options.sg3;
@@ -219,6 +228,9 @@ function saveOptions() {
   options.pres_imp_aff = document.getElementById("ckImpAff").checked;
   options.pres_imp_neg = document.getElementById("ckImpNeg").checked;
   options.futuro = document.getElementById("ckFuturo").checked;
+
+  options.presente_subjuntivo = document.getElementById("ckPresenteSubjuntivo").checked;
+
   options.sg1 = document.getElementById("ckSg1").checked;
   options.sg2 = document.getElementById("ckSg2").checked;
   options.sg3 = document.getElementById("ckSg3").checked;

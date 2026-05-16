@@ -1,4 +1,5 @@
 import words_present from "./data/Presente/worddata_indicativo.csv";
+import words_pres_sub from "./data/Presente/worddata_subjuntivo.csv";
 import words_pres_imp_aff from "./data/Presente/worddata_imp_aff.csv";
 import words_pres_imp_neg from "./data/Presente/worddata_imp_neg.csv";
 import words_indefinido from "./data/Pretérito/worddata_indefinido.csv";
@@ -41,6 +42,7 @@ function getPronoun(id) {
 
 const forms = {
   pres_ind: makeForm(words_present, "Indicativo", "Presente", "Presente"),
+  pres_sub: makeForm(words_pres_sub, "Subjuntivo", "Presente", "Subjuntivo Presente"),
   pres_imp_aff: makeForm(
     words_pres_imp_aff,
     "Imperative Affirmative",
@@ -93,10 +95,11 @@ export function updateConstraints(options) {
   if (options.pres_imp_aff) enabledForms.push("pres_imp_aff");
   if (options.pres_imp_neg) enabledForms.push("pres_imp_neg");
   if (options.futuro) enabledForms.push("futuro");
+  if (options.presente_subjuntivo) enabledForms.push("pres_sub");
 
   console.log("updated random constraints");
-  //console.log("allowed forms: " + enabledForms);
-  //console.log("allowed persons: " + enabledPersons);
+  console.log("allowed forms: " + enabledForms);
+  console.log("allowed persons: " + enabledPersons);
 }
 
 export function getRandomWord() {
