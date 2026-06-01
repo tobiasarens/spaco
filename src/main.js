@@ -1,6 +1,7 @@
 import { getRandomWord, updateConstraints } from "./wordgetter";
 import "./tailwind.css";
 import data from "../about.json" with { type: "json" };
+import { CheckGroup } from "./checkGroups";
 
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
@@ -28,12 +29,18 @@ var currentStreak = 0;
 var maxStreak = 0;
 
 var options = {
+  // indicativo
   presente: true,
   pres_imp_aff: true,
   pres_imp_neg: true,
   indefinido: true,
   imperfecto: true,
   futuro:true,
+
+  // subjuntivo
+  presente_subjuntivo: true,
+
+
   sg1: true,
   sg2: true,
   sg3: true,
@@ -43,6 +50,9 @@ var options = {
   strictMode: false
 };
 
+var indicativoGroup;
+var subjuntivoGroup;
+
 function init() {
   console.log(isTouch);
   if(isTouch) {
@@ -51,6 +61,10 @@ function init() {
 
   // read version
   versionEl.textContent = "Version " + data.version;
+
+  // create button groups
+  indicativoGroup = new CheckGroup(document.getElementById("ckIndicativoMaster"), document.querySelectorAll(".indicativo-child")); 
+  subjuntivoGroup = new CheckGroup(document.getElementById("ckSubjuntivoMaster"), document.querySelectorAll(".subjuntivo-child")); 
 }
 
 function showCorrectBox(isCorrect, answer, solution) {
@@ -196,6 +210,9 @@ function matchOptionUi(options) {
   document.getElementById("ckImpAff").checked = options.pres_imp_aff;
   document.getElementById("ckImpNeg").checked = options.pres_imp_neg;
   document.getElementById("ckFuturo").checked = options.futuro;
+
+  document.getElementById("ckPresenteSubjuntivo").checked = options.presente_subjuntivo;
+
   document.getElementById("ckSg1").checked = options.sg1;
   document.getElementById("ckSg2").checked = options.sg2;
   document.getElementById("ckSg3").checked = options.sg3;
@@ -219,6 +236,9 @@ function saveOptions() {
   options.pres_imp_aff = document.getElementById("ckImpAff").checked;
   options.pres_imp_neg = document.getElementById("ckImpNeg").checked;
   options.futuro = document.getElementById("ckFuturo").checked;
+
+  options.presente_subjuntivo = document.getElementById("ckPresenteSubjuntivo").checked;
+
   options.sg1 = document.getElementById("ckSg1").checked;
   options.sg2 = document.getElementById("ckSg2").checked;
   options.sg3 = document.getElementById("ckSg3").checked;
@@ -276,4 +296,4 @@ hideIncorrectBox();
 nextQuestion();
 
 // debug tmp
-//showOptions();
+showOptions();
