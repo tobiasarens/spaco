@@ -13,7 +13,7 @@ DATABASE_FILE = Path("database_complete.csv")
 # list of tenses that should be looked up
 # also used as file suffix for the final csv
 # TENSE_LIST = ["present", "indefinido", "imperfecto"]
-TENSE_LIST = ["imp_aff"]
+TENSE_LIST = ["condicional"]
 
 COLUMNS = ["infinitive", "sg1", "sg2", "sg3", "pl1", "pl2", "pl3"]
 
@@ -24,7 +24,8 @@ DB_TENSE_MAP = {
     "imperfecto": "Imperfecto",
     "imp_aff": "Imperativo Afirmativo",
     "imp_neg": "Imperativo Negativo",
-    "futuro": "Futuro"
+    "futuro": "Futuro",
+    "condicional": "Condicional"
 }
 
 
@@ -45,6 +46,10 @@ DB_COPY_MAP = {
         "Indicativo": "indicativo"
     },
     "Futuro":
+    {
+        "Indicativo": "indicativo"
+    },
+    "Condicional":
     {
         "Indicativo": "indicativo"
     }
