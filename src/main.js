@@ -1,6 +1,7 @@
 import { getRandomWord, updateConstraints } from "./wordgetter";
 import "./tailwind.css";
 import data from "../about.json" with { type: "json" };
+import { CheckGroup } from "./checkGroups";
 
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
@@ -49,6 +50,10 @@ var options = {
   strictMode: false
 };
 
+var indMaster = document.getElementById("ckIndicativoMaster");
+var indChildren = document.querySelectorAll(".indicativo-child");
+var indicativoGroup;
+
 function init() {
   console.log(isTouch);
   if(isTouch) {
@@ -57,6 +62,9 @@ function init() {
 
   // read version
   versionEl.textContent = "Version " + data.version;
+
+  // create button groups
+  indicativoGroup = new CheckGroup(indMaster, indChildren); 
 }
 
 function showCorrectBox(isCorrect, answer, solution) {
@@ -288,4 +296,4 @@ hideIncorrectBox();
 nextQuestion();
 
 // debug tmp
-//showOptions();
+showOptions();
