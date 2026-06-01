@@ -50,9 +50,8 @@ var options = {
   strictMode: false
 };
 
-var indMaster = document.getElementById("ckIndicativoMaster");
-var indChildren = document.querySelectorAll(".indicativo-child");
 var indicativoGroup;
+var subjuntivoGroup;
 
 function init() {
   console.log(isTouch);
@@ -64,7 +63,8 @@ function init() {
   versionEl.textContent = "Version " + data.version;
 
   // create button groups
-  indicativoGroup = new CheckGroup(indMaster, indChildren); 
+  indicativoGroup = new CheckGroup(document.getElementById("ckIndicativoMaster"), document.querySelectorAll(".indicativo-child")); 
+  subjuntivoGroup = new CheckGroup(document.getElementById("ckSubjuntivoMaster"), document.querySelectorAll(".subjuntivo-child")); 
 }
 
 function showCorrectBox(isCorrect, answer, solution) {
