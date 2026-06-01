@@ -290,4 +290,4 @@ hideIncorrectBox();
 nextQuestion();
 
 // debug tmp
-//showOptions();
+showOptions();
