@@ -31,14 +31,15 @@ var maxStreak = 0;
 var options = {
   // indicativo
   presente: true,
-  pres_imp_aff: true,
-  pres_imp_neg: true,
+  pres_imp_aff: false,
+  pres_imp_neg: false,
   indefinido: true,
   imperfecto: true,
   futuro:true,
+  conditional: false,
 
   // subjuntivo
-  presente_subjuntivo: true,
+  presente_subjuntivo: false,
 
 
   sg1: true,
@@ -210,6 +211,7 @@ function matchOptionUi(options) {
   document.getElementById("ckImpAff").checked = options.pres_imp_aff;
   document.getElementById("ckImpNeg").checked = options.pres_imp_neg;
   document.getElementById("ckFuturo").checked = options.futuro;
+  document.getElementById("ckConditional").checked = options.conditional;
 
   document.getElementById("ckPresenteSubjuntivo").checked = options.presente_subjuntivo;
 
@@ -236,6 +238,7 @@ function saveOptions() {
   options.pres_imp_aff = document.getElementById("ckImpAff").checked;
   options.pres_imp_neg = document.getElementById("ckImpNeg").checked;
   options.futuro = document.getElementById("ckFuturo").checked;
+  options.conditional = document.getElementById("ckConditional").checked;
 
   options.presente_subjuntivo = document.getElementById("ckPresenteSubjuntivo").checked;
 
@@ -279,15 +282,6 @@ function getAllowedPersons(options) {
   if (options.pl3) allowed.push(6);
 
   return allowed.length > 0 ? allowed : [1];
-}
-
-function getAllowedTenses(options) {
-  var allowed = [];
-  if (options.presente) allowed.push("presente");
-  if (options.indefinido) allowed.push("indefinido");
-  if (options.imperfecto) allowed.push("imperfecto");
-
-  return allowed.length > 0 ? allowed : ["presente"];
 }
 
 init();
